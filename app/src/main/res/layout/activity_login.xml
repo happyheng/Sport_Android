@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/top_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/icon_iv"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@mipmap/icon" />
+
+        <EditText
+            android:id="@+id/username_et"
+            android:layout_width="300dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="25dp" />
+
+        <EditText
+            android:id="@+id/password_et"
+            android:layout_width="300dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="10dp" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/bottom_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/login_bt"
+            android:layout_width="300dp"
+            android:layout_height="35dp"
+            android:background="@color/red"
+            android:text="login"
+            android:textColor="@color/write" />
+
+        <Button
+            android:id="@+id/register_bt"
+            android:layout_width="300dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="25dp"
+            android:background="@color/blue_light"
+            android:text="login"
+            android:textColor="@color/write" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>
