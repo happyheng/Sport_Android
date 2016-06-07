@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import com.happyheng.sport_android.R;
 import com.happyheng.sport_android.utils.DensityUtils;
 import com.happyheng.sport_android.utils.ScreenUtils;
+import com.happyheng.sport_android.utils.SimpleStartActivityUtils;
 
 /**
  * "登陆"的Activity
@@ -55,6 +56,14 @@ public class LoginActivity extends Activity {
 
         mTopLl = findViewById(R.id.top_ll);
         mBottomLl = findViewById(R.id.bottom_ll);
+
+        mRegisterBt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //点击注册，跳转到注册的界面
+                SimpleStartActivityUtils.startActivity(LoginActivity.this, RegisterActivity.class);
+            }
+        });
     }
 
     /**

@@ -20,15 +20,20 @@
 
         <EditText
             android:id="@+id/username_et"
-            android:layout_width="300dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="25dp" />
+            android:layout_width="@dimen/edittext_default_width"
+            android:layout_height="@dimen/edittext_default_height"
+            android:layout_marginTop="25dp"
+            android:gravity="center"
+            android:hint="@string/login_username_hint" />
 
         <EditText
             android:id="@+id/password_et"
-            android:layout_width="300dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="10dp" />
+            android:layout_width="@dimen/edittext_default_width"
+            android:layout_height="@dimen/edittext_default_height"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:hint="@string/login_password_hint"
+            android:inputType="textPassword" />
 
 
     </LinearLayout>
@@ -56,7 +61,7 @@
             android:layout_height="35dp"
             android:layout_marginTop="25dp"
             android:background="@color/blue_light"
-            android:text="login"
+            android:text="register"
             android:textColor="@color/write" />
 
     </LinearLayout>
