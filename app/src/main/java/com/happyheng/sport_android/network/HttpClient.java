@@ -120,6 +120,7 @@ public class HttpClient {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
             requestListener.onFail();
+
         }
 
     }
