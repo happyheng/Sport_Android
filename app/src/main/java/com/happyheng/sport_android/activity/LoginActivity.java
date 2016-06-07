@@ -10,9 +10,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.happyheng.sport_android.R;
+import com.happyheng.sport_android.network.HttpClient;
+import com.happyheng.sport_android.network.listener.OnRequestListener;
 import com.happyheng.sport_android.utils.DensityUtils;
 import com.happyheng.sport_android.utils.ScreenUtils;
 import com.happyheng.sport_android.utils.SimpleStartActivityUtils;
+import com.orhanobut.logger.Logger;
 
 /**
  * "登陆"的Activity
@@ -41,6 +44,21 @@ public class LoginActivity extends Activity {
         initView();
 
         beginAnimation();
+
+
+        //测试网络请求的代码
+        HttpClient.doAsyncPost("Base", "Test", new OnRequestListener<String>() {
+            @Override
+            public void onSuccess(String s) {
+                Logger.d("请求成功，请求的数据为" + s);
+            }
+
+            @Override
+            public void onFail() {
+                Logger.d("请求失败");
+            }
+        });
+        //测试网络请求的代码
     }
 
 
