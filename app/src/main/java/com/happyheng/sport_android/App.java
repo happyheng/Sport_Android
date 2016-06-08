@@ -2,7 +2,7 @@ package com.happyheng.sport_android;
 
 import android.app.Application;
 
-import com.happyheng.sport_android.network.HttpClient;
+import com.happyheng.sport_android.model.network.HttpClient;
 import com.orhanobut.logger.Logger;
 
 /**

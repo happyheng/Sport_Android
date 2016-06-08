@@ -1,8 +1,8 @@
-package com.happyheng.sport_android.network;
+package com.happyheng.sport_android.model.network;
 
 import android.content.Context;
 
-import com.happyheng.sport_android.network.listener.OnRequestListener;
+import com.happyheng.sport_android.model.network.listener.OnRequestListener;
 import com.orhanobut.logger.Logger;
 
 import java.io.IOException;

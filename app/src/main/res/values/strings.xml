@@ -7,5 +7,7 @@
     <string name="login_bt_text">login</string>
     <string name="register_bt_text">register</string>
 
+    <string name="user_pass_empty">用户名或密码不能为空哦</string>
+
 
 </resources>
