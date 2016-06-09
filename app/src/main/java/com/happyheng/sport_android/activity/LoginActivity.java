@@ -5,6 +5,7 @@ import android.animation.PropertyValuesHolder;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -49,19 +50,19 @@ public class LoginActivity extends Activity {
         beginAnimation();
 
 
-        //测试网络请求的代码
-        HttpClient.doAsyncPost("Base", "Test", new OnRequestListener<String>() {
-            @Override
-            public void onSuccess(String s) {
-                Logger.d("请求成功，请求的数据为" + s);
-            }
-
-            @Override
-            public void onFail() {
-                Logger.d("请求失败");
-            }
-        });
-        //测试网络请求的代码
+//        //测试网络请求的代码
+//        HttpClient.doAsyncPost("Base", "Test", new OnRequestListener<String>() {
+//            @Override
+//            public void onSuccess(String s) {
+//                Logger.d("请求成功，请求的数据为" + s);
+//            }
+//
+//            @Override
+//            public void onFail() {
+//                Logger.d("请求失败");
+//            }
+//        });
+//        //测试网络请求的代码
     }
 
 
@@ -101,6 +102,24 @@ public class LoginActivity extends Activity {
                     @Override
                     public void onFail(int code) {
                         Logger.d("失败的code为" + code);
+
+                        switch (code) {
+
+                            case LoginRequest.REQUEST_WRONG_USERNAME:
+                                ToastUtils.showToast(LoginActivity.this, getResources().getString(R.string.wrong_username));
+
+                                break;
+
+                            case LoginRequest.REQUEST_WRONG_PASSWORD:
+                                ToastUtils.showToast(LoginActivity.this, getResources().getString(R.string.wrong_password));
+
+                                break;
+
+                            default:
+                                ToastUtils.showToast(LoginActivity.this, getResources().getString(R.string.wrong_request));
+
+                                break;
+                        }
                     }
                 });
             }

@@ -1,8 +1,11 @@
 package com.happyheng.sport_android.model.network;
 
 import android.content.Context;
+import android.os.Looper;
+import android.widget.Toast;
 
 import com.happyheng.sport_android.model.network.listener.OnRequestListener;
+import com.happyheng.sport_android.utils.ThreadUtils;
 import com.orhanobut.logger.Logger;
 
 import java.io.IOException;
@@ -27,7 +30,7 @@ import okhttp3.Response;
 public class HttpClient {
 
 
-    private static final String BASE_URL = "http://192.168.0.102:8080/Sport/";
+    private static final String BASE_URL = "http://192.168.1.15:8080/Sport/";
     private static final int CacheSize = 50 * 1024 * 1024; // 缓存的大小,默认为50 MiB
     private static final String DEFAULT_NULL_RESULT = "";  //默认的空返回值
 
@@ -60,7 +63,7 @@ public class HttpClient {
     /**
      * 同步从网络上获取数据
      *
-     * @param path            请求的path
+     * @param path          请求的path
      * @param requestString 此String是请求的数据转换的json字符串
      * @return 返回请求的json字符串，如果失败，返回""
      */
@@ -101,20 +104,43 @@ public class HttpClient {
             mOkHttpClient.newCall(request).enqueue(new Callback() {
 
                 @Override
-                public void onResponse(Call call, Response response) throws IOException {
-                    if (response.isSuccessful()) {
-                        requestListener.onSuccess(response.body().string());
-                    }
-                    //在这里失败，即为返回的code不在200-300之间，意思即为服务器出现的错误，这种情况很少出现，但视为网络错误
-                    else {
-                        requestListener.onFail();
-                    }
+                public void onResponse(Call call, final Response response) throws IOException {
+
+
+                    ThreadUtils.runOnNewThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            try {
+
+                                if (response.isSuccessful()) {
+                                    requestListener.onSuccess(response.body().string());
+                                }
+                                //在这里失败，即为返回的code不在200-300之间，意思即为服务器出现的错误，这种情况很少出现，但视为网络错误
+                                else {
+                                    requestListener.onFail();
+                                }
+
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                                requestListener.onFail();
+                            }
+
+                        }
+                    });
+
+
                 }
 
                 //一般来说，如果是失败的话，一般都为网络异常，比如手机未联网等
                 @Override
                 public void onFailure(Call call, IOException e) {
-                    requestListener.onFail();
+                    ThreadUtils.runOnMainThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            requestListener.onFail();
+                        }
+                    });
                 }
             });
         } catch (UnsupportedEncodingException e) {
