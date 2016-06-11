@@ -13,7 +13,6 @@ public class ToastUtils {
         showToast(context, content, false);
     }
 
-
     public static void showToast(Context context, String content, boolean isLongToast) {
         int length;
         if (isLongToast) {

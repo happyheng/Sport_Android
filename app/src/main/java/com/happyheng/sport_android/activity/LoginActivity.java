@@ -5,7 +5,6 @@ import android.animation.PropertyValuesHolder;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,8 +12,6 @@ import android.widget.ImageView;
 
 import com.happyheng.sport_android.R;
 import com.happyheng.sport_android.model.LoginRequest;
-import com.happyheng.sport_android.model.network.HttpClient;
-import com.happyheng.sport_android.model.network.listener.OnRequestListener;
 import com.happyheng.sport_android.utils.DensityUtils;
 import com.happyheng.sport_android.utils.ScreenUtils;
 import com.happyheng.sport_android.utils.SimpleStartActivityUtils;
@@ -93,7 +90,7 @@ public class LoginActivity extends Activity {
 
 
                 //3、调用相关接口
-                LoginRequest.onLogin(userNameString, passWordString, new LoginRequest.OnLoginListener() {
+                LoginRequest request = new LoginRequest(userNameString, passWordString, new LoginRequest.OnLoginListener() {
                     @Override
                     public void onSuccess(String token) {
                         Logger.d("token为" + token);
@@ -122,6 +119,9 @@ public class LoginActivity extends Activity {
                         }
                     }
                 });
+                request.doRequest();
+
+
             }
         });
 

@@ -1,24 +1,20 @@
 package com.happyheng.sport_android.model.network;
 
 import android.content.Context;
-import android.os.Looper;
-import android.widget.Toast;
 
+import com.happyheng.sport_android.model.entity.PostRequestBody;
 import com.happyheng.sport_android.model.network.listener.OnRequestListener;
 import com.happyheng.sport_android.utils.ThreadUtils;
 import com.orhanobut.logger.Logger;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 
 import okhttp3.Cache;
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
@@ -29,8 +25,6 @@ import okhttp3.Response;
  */
 public class HttpClient {
 
-
-    private static final String BASE_URL = "http://192.168.1.15:8080/Sport/";
     private static final int CacheSize = 50 * 1024 * 1024; // 缓存的大小,默认为50 MiB
     private static final String DEFAULT_NULL_RESULT = "";  //默认的空返回值
 
@@ -63,15 +57,15 @@ public class HttpClient {
     /**
      * 同步从网络上获取数据
      *
-     * @param path          请求的path
-     * @param requestString 此String是请求的数据转换的json字符串
+     * @param url   请求的url
+     * @param bodys 此为请求的键值对数组
      * @return 返回请求的json字符串，如果失败，返回""
      */
-    public static String doSyncPost(String path, String requestString) {
+    public static String doSyncPost(String url, PostRequestBody[] bodys) {
 
         Request request;
         try {
-            request = getRequest(path, requestString, okhttp3.CacheControl.FORCE_NETWORK);
+            request = HttpClientRequestHelper.getRequest(url, bodys, okhttp3.CacheControl.FORCE_NETWORK);
             Response response = mOkHttpClient.newCall(request).execute();
 
             if (response.isSuccessful()) {
@@ -91,28 +85,26 @@ public class HttpClient {
     /**
      * 异步去网络上请求数据的方法
      *
-     * @param path            请求的path
-     * @param requestString   请求的数据，注意须是json数据生成的String数据
+     * @param url          请求的url
+     * @param bodys  此为请求的键值对数组
      * @param requestListener 请求回调的接口  两种情况:
      *                        请求完全成功后，才会调用onSuccess()方法，其它调用onFail()方法
      */
-    public static void doAsyncPost(String path, final String requestString, final OnRequestListener<String> requestListener) {
+    public static void doAsyncPost(String url, PostRequestBody[] bodys, final OnRequestListener<String> requestListener) {
         final Request request;
         try {
-            request = getRequest(path, requestString, okhttp3.CacheControl.FORCE_NETWORK);
+            request = HttpClientRequestHelper.getRequest(url, bodys, okhttp3.CacheControl.FORCE_NETWORK);
 
             mOkHttpClient.newCall(request).enqueue(new Callback() {
 
                 @Override
                 public void onResponse(Call call, final Response response) throws IOException {
 
-
-                    ThreadUtils.runOnNewThread(new Runnable() {
+                    ThreadUtils.runOnMainThread(new Runnable() {
                         @Override
                         public void run() {
 
                             try {
-
                                 if (response.isSuccessful()) {
                                     requestListener.onSuccess(response.body().string());
                                 }
@@ -146,7 +138,6 @@ public class HttpClient {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
             requestListener.onFail();
-
         }
 
     }
@@ -163,20 +154,20 @@ public class HttpClient {
     /**
      * 根据请求的数据等来获取Okhttp中的Request请求对象
      */
-    private static Request getRequest(String path, String requestString, okhttp3.CacheControl cacheControl) throws UnsupportedEncodingException {
-
-        String encoderRequestString = URLEncoder.encode(requestString, "UTF8");
-
-        RequestBody requestBody = new FormBody.Builder()
-                .add("s", encoderRequestString)
-                .build();
-
-        return new Request.Builder()
-                .url(BASE_URL + path)
-                .post(requestBody)
-                .cacheControl(cacheControl)
-                .build();
-    }
+//    private static Request getRequest(String path, String requestString, okhttp3.CacheControl cacheControl) throws UnsupportedEncodingException {
+//
+//        String encoderRequestString = URLEncoder.encode(requestString, "UTF8");
+//
+//        RequestBody requestBody = new FormBody.Builder()
+//                .add("s", encoderRequestString)
+//                .build();
+//
+//        return new Request.Builder()
+//                .url(BASE_URL + path)
+//                .post(requestBody)
+//                .cacheControl(cacheControl)
+//                .build();
+//    }
 
 
 }
