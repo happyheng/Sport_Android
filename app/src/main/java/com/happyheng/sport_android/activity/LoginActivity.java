@@ -12,7 +12,9 @@ import android.widget.ImageView;
 
 import com.happyheng.sport_android.R;
 import com.happyheng.sport_android.model.LoginRequest;
+import com.happyheng.sport_android.model.User;
 import com.happyheng.sport_android.utils.DensityUtils;
+import com.happyheng.sport_android.utils.SPUtils;
 import com.happyheng.sport_android.utils.ScreenUtils;
 import com.happyheng.sport_android.utils.SimpleStartActivityUtils;
 import com.happyheng.sport_android.utils.ToastUtils;
@@ -94,6 +96,10 @@ public class LoginActivity extends Activity {
                     @Override
                     public void onSuccess(String token) {
                         Logger.d("token为" + token);
+
+                        User.getUser().setUserToken(token);
+
+                        Logger.d("得到储存的token为"+User.getUser().getUserToken());
                     }
 
                     @Override

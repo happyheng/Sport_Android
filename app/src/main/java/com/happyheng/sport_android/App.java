@@ -2,6 +2,7 @@ package com.happyheng.sport_android;
 
 import android.app.Application;
 
+import com.happyheng.sport_android.model.User;
 import com.happyheng.sport_android.model.network.HttpClient;
 import com.orhanobut.logger.Logger;
 
@@ -21,5 +22,7 @@ public class App extends Application{
 
         Logger.init(TAG_NAME);
         HttpClient.init(this);
+
+        User.init(getApplicationContext());
     }
 }
