@@ -122,6 +122,7 @@ public class LoginActivity extends Activity {
                                 ToastUtils.showToast(LoginActivity.this, getResources().getString(R.string.wrong_request));
 
                                 break;
+
                         }
                     }
                 });
