@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.happyheng.sport_android.model.network.listener.OnRequestListener;
 
 /**
- * 所有网络访问的请求封装类，会把每一次请求都做好封装
+ * 登陆请求的类
  * Created by liuheng on 16/6/8.
  */
 public class LoginRequest extends BaseRequest{
