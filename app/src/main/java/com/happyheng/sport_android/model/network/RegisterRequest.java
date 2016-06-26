@@ -21,7 +21,6 @@ public class RegisterRequest extends BaseRequest {
     //重复昵称
     public static final int REQUEST_REPEAT_NICKNAME = 2;
 
-
     public RegisterRequest(String userName, String passWord, String nickName, onRegisterListener listener) {
         this.mUserName = userName;
         this.mPassWord = passWord;

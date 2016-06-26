@@ -13,5 +13,18 @@
 
     <string name="wrong_request">网络请求错误</string>
 
+    <string name="user_empty">用户名不能为空哦</string>
+    <string name="pass_empty">密码不能为空哦</string>
+    <string name="pass_wrong_confirm">两次密码不一致</string>
+    <string name="nick_empty">昵称不能为空哦</string>
+
+    <string name="login_password_confirm_hint">请再次输入密码</string>
+    <string name="nick_hint">请输入昵称</string>
+    
+    <string name="repeat_user_name">用户名已被使用，请换一个吧</string>
+    <string name="repeat_nick">昵称已被使用，请换一个吧</string>
+
+    <string name="register_success">注册成功</string>
+
 
 </resources>

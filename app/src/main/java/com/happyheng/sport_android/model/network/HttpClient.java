@@ -100,28 +100,38 @@ public class HttpClient {
                 @Override
                 public void onResponse(Call call, final Response response) throws IOException {
 
-                    ThreadUtils.runOnMainThread(new Runnable() {
-                        @Override
-                        public void run() {
 
-                            try {
-                                if (response.isSuccessful()) {
-                                    requestListener.onSuccess(response.body().string());
-                                }
-                                //在这里失败，即为返回的code不在200-300之间，意思即为服务器出现的错误，这种情况很少出现，但视为网络错误
-                                else {
-                                    requestListener.onFail();
-                                }
+                    try {
+                        if (response.isSuccessful()) {
 
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                                requestListener.onFail();
-                            }
+                            final String result = response.body().string();
+                            ThreadUtils.runOnMainThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    requestListener.onSuccess(result);
+                                }
+                            });
 
                         }
-                    });
+                        //在这里失败，即为返回的code不在200-300之间，意思即为服务器出现的错误，这种情况很少出现，但视为网络错误
+                        else {
+                            ThreadUtils.runOnMainThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    requestListener.onFail();
+                                }
+                            });
+                        }
 
-
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        ThreadUtils.runOnMainThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                requestListener.onFail();
+                            }
+                        });
+                    }
                 }
 
                 //一般来说，如果是失败的话，一般都为网络异常，比如手机未联网等

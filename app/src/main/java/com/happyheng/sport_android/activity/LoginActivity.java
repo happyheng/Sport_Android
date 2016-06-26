@@ -11,10 +11,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.happyheng.sport_android.R;
+import com.happyheng.sport_android.model.BaseRequest;
 import com.happyheng.sport_android.model.LoginRequest;
 import com.happyheng.sport_android.model.User;
 import com.happyheng.sport_android.utils.DensityUtils;
-import com.happyheng.sport_android.utils.SPUtils;
 import com.happyheng.sport_android.utils.ScreenUtils;
 import com.happyheng.sport_android.utils.SimpleStartActivityUtils;
 import com.happyheng.sport_android.utils.ToastUtils;
@@ -24,7 +24,7 @@ import com.orhanobut.logger.Logger;
  * "登陆"的Activity
  * Created by liuheng on 16/6/6.
  */
-public class LoginActivity extends Activity {
+public class LoginActivity extends BaseActivity {
 
     //动画的时长
     private static final int ANIMATION_TIME = 1000;
@@ -47,21 +47,6 @@ public class LoginActivity extends Activity {
         initView();
 
         beginAnimation();
-
-
-//        //测试网络请求的代码
-//        HttpClient.doAsyncPost("Base", "Test", new OnRequestListener<String>() {
-//            @Override
-//            public void onSuccess(String s) {
-//                Logger.d("请求成功，请求的数据为" + s);
-//            }
-//
-//            @Override
-//            public void onFail() {
-//                Logger.d("请求失败");
-//            }
-//        });
-//        //测试网络请求的代码
     }
 
 
@@ -92,7 +77,7 @@ public class LoginActivity extends Activity {
 
 
                 //3、调用相关接口
-                LoginRequest request = new LoginRequest(userNameString, passWordString, new LoginRequest.OnLoginListener() {
+                BaseRequest request = new LoginRequest(userNameString, passWordString, new LoginRequest.OnLoginListener() {
                     @Override
                     public void onSuccess(String token) {
                         Logger.d("token为" + token);
