@@ -2,6 +2,7 @@ package com.happyheng.sport_android;
 
 import android.app.Application;
 
+import com.baidu.mapapi.SDKInitializer;
 import com.happyheng.sport_android.model.User;
 import com.happyheng.sport_android.model.network.HttpClient;
 import com.orhanobut.logger.Logger;
@@ -24,5 +25,7 @@ public class App extends Application{
         HttpClient.init(this);
 
         User.init(getApplicationContext());
+
+        SDKInitializer.initialize(getApplicationContext());
     }
 }

@@ -3,7 +3,16 @@
     package="com.happyheng.sport_android">
 
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 
     <application
         android:name=".App"
@@ -12,6 +21,11 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@android:style/Theme.Light.NoTitleBar">
+
+        <!--百度云开发Key，可以将其替换成自己的，申请的具体方法可以参考  http://lbsyun.baidu.com/index.php?title=androidsdk/guide/key  -->
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="8c9AjQNNSK9YoNQKvvPOagxW03AQnvgd" />
 
         <activity
             android:name=".activity.LoginActivity"
@@ -25,6 +39,12 @@
 
         <activity
             android:name=".activity.RegisterActivity"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <activity
+            android:name=".activity.MapActivity"
             android:screenOrientation="portrait">
 
         </activity>

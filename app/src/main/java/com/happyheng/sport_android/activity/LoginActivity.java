@@ -3,6 +3,7 @@ package com.happyheng.sport_android.activity;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -84,7 +85,7 @@ public class LoginActivity extends BaseActivity {
 
                         User.getUser().setUserToken(token);
 
-                        Logger.d("得到储存的token为"+User.getUser().getUserToken());
+                        Logger.d("得到储存的token为" + User.getUser().getUserToken());
                     }
 
                     @Override
@@ -114,6 +115,8 @@ public class LoginActivity extends BaseActivity {
                 request.doRequest();
 
 
+                Intent intent = new Intent(LoginActivity.this, MapActivity.class);
+                startActivity(intent);
             }
         });
 
