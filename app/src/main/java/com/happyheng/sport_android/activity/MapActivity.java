@@ -8,6 +8,7 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.MapView;
+import com.baidu.mapapi.map.MyLocationConfiguration;
 import com.baidu.mapapi.map.MyLocationData;
 import com.happyheng.sport_android.R;
 import com.orhanobut.logger.Logger;
@@ -17,6 +18,7 @@ import com.orhanobut.logger.Logger;
  * Created by liuheng on 16/6/26.
  */
 public class MapActivity extends BaseActivity implements BDLocationListener {
+
     //显示的百度MapView
     private MapView mMapView = null;
 
@@ -35,18 +37,15 @@ public class MapActivity extends BaseActivity implements BDLocationListener {
         mLocationClient = new LocationClient(getApplicationContext());
         //给定位类加入自定义的配置
         initLocation();
-        mLocationClient.registerLocationListener(this);    //注册监听函数
+        //注册监听函数
+        mLocationClient.registerLocationListener(this);
 
 
         //开始监听
         mLocationClient.start();
-
-
     }
 
-    /**
-     * 设置
-     */
+    //初始化定位的配置
     private void initLocation() {
         LocationClientOption option = new LocationClientOption();
         option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy
@@ -66,6 +65,7 @@ public class MapActivity extends BaseActivity implements BDLocationListener {
     }
 
 
+    //获取经纬度后回调的方法
     @Override
     public void onReceiveLocation(BDLocation bdLocation) {
         //先暂时获得经纬度信息
@@ -73,18 +73,29 @@ public class MapActivity extends BaseActivity implements BDLocationListener {
 
 
         //可以用下面的方法对在得到经纬度信息后在百度地图中进行显示
-        //        BaiduMap mMap = mMapView.getMap();
-//
-//        // 开启定位图层
-//        mMap.setMyLocationEnabled(true);
-//        // 构造定位数据
-//        MyLocationData locData = new MyLocationData.Builder()
-//                .accuracy(location.getRadius())
-//                // 此处设置开发者获取到的方向信息，顺时针0-360
-//                .direction(100).latitude(location.getLatitude())
-//                .longitude(location.getLongitude()).build();
-//        // 设置定位数据
-//        mMap.setMyLocationData(locData);
+        BaiduMap mMap = mMapView.getMap();
+
+        // 开启定位图层
+        mMap.setMyLocationEnabled(true);
+        // 构造定位数据
+        MyLocationData locData = new MyLocationData.Builder()
+                .accuracy(bdLocation.getRadius())
+                // 此处设置开发者获取到的方向信息，顺时针0-360
+                .direction(100)
+                .latitude(bdLocation.getLatitude())
+                .longitude(bdLocation.getLongitude())
+                .build();
+
+        //设置定位的配置信息
+        MyLocationConfiguration configuration = new MyLocationConfiguration(MyLocationConfiguration.LocationMode.FOLLOWING, true, null);
+        mMap.setMyLocationConfigeration(configuration);
+        // 设置定位数据
+        mMap.setMyLocationData(locData);
+    }
+
+    //开始记录每次定位的信息
+    private void beginRecord(){
+
     }
 
 
