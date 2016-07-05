@@ -2,7 +2,6 @@ package com.happyheng.sport_android.activity;
 
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -31,6 +30,10 @@ public class LoginActivity extends BaseActivity {
     private static final int ANIMATION_TIME = 1000;
     //底部Button距中间线的高度
     private static final int BOTTOM_MARGIN = 50;
+
+    private View.OnClickListener mLoginBtClickListener = new OnLoginBtClickListener();
+    private LoginRequest.OnLoginListener  mLoginListener = new OnLoginListener();
+
 
 
     private ImageView mIconIv;
@@ -64,61 +67,7 @@ public class LoginActivity extends BaseActivity {
         mTopLl = findViewById(R.id.top_ll);
         mBottomLl = findViewById(R.id.bottom_ll);
 
-        mLoginBt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                String userNameString = mUserNameEt.getText().toString();
-                String passWordString = mPassWordEt.getText().toString();
-                //1、先判断是否为空
-                if (TextUtils.isEmpty(userNameString) || TextUtils.isEmpty(passWordString)) {
-                    ToastUtils.showToast(LoginActivity.this, getResources().getString(R.string.user_pass_empty));
-                }
-                //2、判断是否为用户名为字母+数字
-
-
-                //3、调用相关接口
-                BaseRequest request = new LoginRequest(userNameString, passWordString, new LoginRequest.OnLoginListener() {
-                    @Override
-                    public void onSuccess(String token) {
-                        Logger.d("token为" + token);
-
-                        User.getUser().setUserToken(token);
-
-                        Logger.d("得到储存的token为" + User.getUser().getUserToken());
-                    }
-
-                    @Override
-                    public void onFail(int code) {
-                        Logger.d("失败的code为" + code);
-
-                        switch (code) {
-
-                            case LoginRequest.REQUEST_WRONG_USERNAME:
-                                ToastUtils.showToast(LoginActivity.this, getResources().getString(R.string.wrong_username));
-
-                                break;
-
-                            case LoginRequest.REQUEST_WRONG_PASSWORD:
-                                ToastUtils.showToast(LoginActivity.this, getResources().getString(R.string.wrong_password));
-
-                                break;
-
-                            default:
-                                ToastUtils.showToast(LoginActivity.this, getResources().getString(R.string.wrong_request));
-
-                                break;
-
-                        }
-                    }
-                });
-                request.doRequest();
-
-
-                Intent intent = new Intent(LoginActivity.this, MapActivity.class);
-                startActivity(intent);
-            }
-        });
+        mLoginBt.setOnClickListener(mLoginBtClickListener);
 
         mRegisterBt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,6 +76,63 @@ public class LoginActivity extends BaseActivity {
                 SimpleStartActivityUtils.startActivity(LoginActivity.this, RegisterActivity.class);
             }
         });
+    }
+
+    private class OnLoginBtClickListener implements View.OnClickListener {
+
+        @Override
+        public void onClick(View v) {
+            String userNameString = mUserNameEt.getText().toString();
+            String passWordString = mPassWordEt.getText().toString();
+            //1、先判断是否为空
+            if (TextUtils.isEmpty(userNameString) || TextUtils.isEmpty(passWordString)) {
+                ToastUtils.showToast(LoginActivity.this, getResources().getString(R.string.user_pass_empty));
+            }
+            //2、判断是否为用户名为字母+数字
+
+
+            //3、调用相关接口
+            BaseRequest request = new LoginRequest(userNameString, passWordString, mLoginListener);
+            request.doRequest();
+        }
+    }
+
+    private class OnLoginListener implements LoginRequest.OnLoginListener{
+
+        @Override
+        public void onSuccess(String token) {
+            Logger.d("token为" + token);
+
+            User.getUser().setUserToken(token);
+
+            Logger.d("得到储存的token为" + User.getUser().getUserToken());
+            Intent intent = new Intent(LoginActivity.this, MapActivity.class);
+            startActivity(intent);
+        }
+
+
+        @Override
+        public void onFail(int code) {
+            Logger.d("失败的code为" + code);
+
+            switch (code) {
+
+                case LoginRequest.REQUEST_WRONG_USERNAME:
+                    ToastUtils.showToast(LoginActivity.this, getResources().getString(R.string.wrong_username));
+
+                    break;
+
+                case LoginRequest.REQUEST_WRONG_PASSWORD:
+                    ToastUtils.showToast(LoginActivity.this, getResources().getString(R.string.wrong_password));
+
+                    break;
+
+                default:
+                    ToastUtils.showToast(LoginActivity.this, getResources().getString(R.string.wrong_request));
+
+                    break;
+            }
+        }
     }
 
     /**

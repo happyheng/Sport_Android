@@ -15,6 +15,7 @@ public abstract class BaseRequest {
     private static final String IP = "192.168.0.103";
     private static final String BASE_URL = "http://"+IP+":8080/Sport/";
     private static final String REQUEST_BASE_KEY = "s";
+    protected static final String RESULT_KEY = "result";
 
     public static final int REQUEST_SUCCESS = 0; //成功
     public static final int REQUEST_OTHER_EXCEPTION = 100; //服务器错误，请求错误等等非逻辑错误，都是这个

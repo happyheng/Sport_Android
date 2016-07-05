@@ -34,7 +34,7 @@ public class RegisterRequest extends BaseRequest {
             @Override
             public void onSuccess(String s) {
                 JSONObject resultJson = JSON.parseObject(s);
-                int code = resultJson.getInteger("result");
+                int code = resultJson.getInteger(RESULT_KEY);
 
                 //根据不同的code，回调不同的接口的方法
                 if (code == REQUEST_SUCCESS) {

@@ -45,7 +45,7 @@ public class LoginRequest extends BaseRequest{
             public void onSuccess(String s) {
 
                 JSONObject resultJson = JSON.parseObject(s);
-                int code = resultJson.getInteger("result");
+                int code = resultJson.getInteger(RESULT_KEY);
                 if (code == REQUEST_SUCCESS) {
                     String token = resultJson.getJSONObject("data").getString("token");
                     listener.onSuccess(token);

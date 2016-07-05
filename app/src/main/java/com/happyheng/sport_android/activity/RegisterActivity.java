@@ -60,7 +60,6 @@ public class RegisterActivity extends BaseActivity {
                     public void onSuccess() {
                         showToast(getString(R.string.register_success));
                         finish();
-
                     }
 
                     @Override
