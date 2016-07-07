@@ -1,6 +1,5 @@
 package com.happyheng.sport_android.model;
 
-import com.alibaba.fastjson.JSONObject;
 import com.happyheng.sport_android.model.entity.PostRequestBody;
 import com.happyheng.sport_android.model.network.HttpClient;
 import com.happyheng.sport_android.model.network.listener.OnRequestListener;
@@ -25,7 +24,7 @@ public abstract class BaseRequest {
 
         PostRequestBody body = new PostRequestBody();
         body.name = REQUEST_BASE_KEY;
-        body.value = getRequestJson().toString();
+        body.value = getRequestJsonString();
 
         HttpClient.doAsyncPost(path,new PostRequestBody[]{body}, getRequestListener());
     }
@@ -47,7 +46,7 @@ public abstract class BaseRequest {
      * 得到封装的请求json数据
      * @return
      */
-    protected abstract JSONObject getRequestJson();
+    protected abstract String getRequestJsonString();
 
 
 }

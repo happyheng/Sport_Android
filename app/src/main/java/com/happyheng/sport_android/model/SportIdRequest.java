@@ -50,10 +50,10 @@ public class SportIdRequest extends BaseRequest{
     }
 
     @Override
-    protected JSONObject getRequestJson() {
+    protected String getRequestJsonString() {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("ukey", User.getUser().getUserToken());
-        return jsonObject;
+        return jsonObject.toString();
     }
 
     public interface OnSportIdListener {

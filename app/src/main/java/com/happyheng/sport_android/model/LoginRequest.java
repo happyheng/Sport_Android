@@ -31,11 +31,11 @@ public class LoginRequest extends BaseRequest{
     }
 
     @Override
-    protected JSONObject getRequestJson() {
+    protected String getRequestJsonString() {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("uname", userName);
         jsonObject.put("upwd", password);
-        return jsonObject;
+        return jsonObject.toString();
     }
 
     @Override

@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.baidu.mapapi.model.LatLng;
 import com.happyheng.sport_android.model.BaseRequest;
+import com.happyheng.sport_android.model.RecordSportMessageRequest;
 import com.happyheng.sport_android.model.SportIdRequest;
 import com.happyheng.sport_android.service.RecordService;
 import com.orhanobut.logger.Logger;
@@ -18,7 +19,8 @@ public class RecordServiceImpl implements RecordService {
 
     private Context mContext;
     private int mSportId = SPORT_DEFAULT_ID;
-    private BaseRequest mSportIdRequest;
+    //分别是记录SportId的Request，和记录Sport信息的Request
+    private BaseRequest mSportIdRequest,mSportMessageRecordReqeust;
 
     //获取SportId的回调
     private SportIdRequest.OnSportIdListener mGetSportIdListener = new SportIdListener();
@@ -26,12 +28,17 @@ public class RecordServiceImpl implements RecordService {
     public RecordServiceImpl(Context context) {
         this.mContext = context;
         mSportIdRequest = new SportIdRequest(mGetSportIdListener);
+        mSportMessageRecordReqeust = new RecordSportMessageRequest();
     }
 
     @Override
     public void recordSport(LatLng latLng, String location) {
-        if (mSportId == SPORT_DEFAULT_ID){
+        //如果sportId尚未获取的话，那么就继续获取
+        if (mSportId == SPORT_DEFAULT_ID) {
             mSportIdRequest.doRequest();
+        }
+        else {
+
         }
     }
 

@@ -61,12 +61,12 @@ public class RegisterRequest extends BaseRequest {
     }
 
     @Override
-    protected JSONObject getRequestJson() {
+    protected String getRequestJsonString() {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("uname", mUserName);
         jsonObject.put("upwd", mPassWord);
         jsonObject.put("nkname", mNickName);
-        return jsonObject;
+        return jsonObject.toJSONString();
     }
 
     public interface onRegisterListener {

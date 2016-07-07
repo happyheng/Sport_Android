@@ -1,6 +1,5 @@
 package com.happyheng.sport_android.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -9,7 +8,7 @@ import android.widget.EditText;
 
 import com.happyheng.sport_android.R;
 import com.happyheng.sport_android.model.BaseRequest;
-import com.happyheng.sport_android.model.network.RegisterRequest;
+import com.happyheng.sport_android.model.RegisterRequest;
 
 /**
  * "注册"的Activity

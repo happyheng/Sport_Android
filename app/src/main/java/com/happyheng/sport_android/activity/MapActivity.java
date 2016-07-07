@@ -2,6 +2,10 @@ package com.happyheng.sport_android.activity;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.os.MessageQueue;
+import android.util.Log;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -65,6 +69,7 @@ public class MapActivity extends BaseActivity implements BDLocationListener {
 
         //初始化信息记录类
         mRecordService = new RecordServiceImpl(this);
+
     }
 
     //初始化定位的配置
