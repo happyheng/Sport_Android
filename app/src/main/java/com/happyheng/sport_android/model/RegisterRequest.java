@@ -1,4 +1,4 @@
-package com.happyheng.sport_android.model.network;
+package com.happyheng.sport_android.model;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
