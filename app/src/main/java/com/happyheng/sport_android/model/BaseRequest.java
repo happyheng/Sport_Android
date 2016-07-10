@@ -11,8 +11,8 @@ import com.happyheng.sport_android.model.network.listener.OnRequestListener;
  */
 public abstract class BaseRequest {
 
-    private static final String IP = "192.168.0.103";
-    private static final String BASE_URL = "http://"+IP+":8080/Sport/";
+    private static final String DOMAIN_NAME = "WWW.happyheng.top";
+    private static final String BASE_URL = "http://"+ DOMAIN_NAME +":8080/Sport/";
     private static final String REQUEST_BASE_KEY = "s";
     protected static final String RESULT_KEY = "result";
 

@@ -69,7 +69,6 @@ public class MapActivity extends BaseActivity implements BDLocationListener {
 
         //初始化信息记录类
         mRecordService = new RecordServiceImpl(this);
-
     }
 
     //初始化定位的配置

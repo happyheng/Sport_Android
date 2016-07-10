@@ -60,11 +60,20 @@ public class RecordSportMessageRequest extends BaseRequest{
     /**
      * 封装了上传至服务器运动信息的类
      */
-    public class SportMessage{
+    public static class SportMessage{
         public int id;
-        public float posx;
-        public float posy;
+        public double posx;
+        public double posy;
         public String location;
+
+        public SportMessage(){}
+
+        public SportMessage(int id, double posx, double posy, String location) {
+            this.id = id;
+            this.posx = posx;
+            this.posy = posy;
+            this.location = location;
+        }
 
         public int getId() {
             return id;
@@ -74,19 +83,19 @@ public class RecordSportMessageRequest extends BaseRequest{
             this.id = id;
         }
 
-        public float getPosx() {
+        public double getPosx() {
             return posx;
         }
 
-        public void setPosx(float posx) {
+        public void setPosx(double posx) {
             this.posx = posx;
         }
 
-        public float getPosy() {
+        public double getPosy() {
             return posy;
         }
 
-        public void setPosy(float posy) {
+        public void setPosy(double posy) {
             this.posy = posy;
         }
 
