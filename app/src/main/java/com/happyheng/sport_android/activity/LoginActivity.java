@@ -34,8 +34,6 @@ public class LoginActivity extends BaseActivity {
     private View.OnClickListener mLoginBtClickListener = new OnLoginBtClickListener();
     private LoginRequest.OnLoginListener  mLoginListener = new OnLoginListener();
 
-
-
     private ImageView mIconIv;
     private EditText mUserNameEt, mPassWordEt;
     private Button mLoginBt, mRegisterBt;

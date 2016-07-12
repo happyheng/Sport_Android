@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/activity_main_bottom_bar_height"
+    android:layout_alignParentBottom="true">
+
+    <LinearLayout
+        android:id="@+id/tab_information"
+        style="@style/activity_main_bottom">
+
+        <ImageView
+            android:id="@+id/information_iv"
+            android:layout_width="@dimen/activity_main_bottom_image_height"
+            android:layout_height="@dimen/activity_main_bottom_image_height"
+            android:layout_marginTop="5dp"
+            android:src="@mipmap/ta2" />
+
+        <TextView
+            style="@style/base_small_text"
+            android:layout_marginTop="5dp"
+            android:text="@string/tab_information" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tab_sport"
+        style="@style/activity_main_bottom">
+
+        <ImageView
+            android:id="@+id/sport_iv"
+            android:layout_width="@dimen/activity_main_bottom_image_height"
+            android:layout_height="@dimen/activity_main_bottom_image_height"
+            android:layout_marginTop="5dp"
+            android:src="@mipmap/tab_sport_unselected" />
+
+        <TextView
+            style="@style/base_small_text"
+            android:layout_marginTop="5dp"
+            android:text="@string/tab_sport" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tab_mine"
+        style="@style/activity_main_bottom">
+
+        <ImageView
+            android:id="@+id/mine_iv"
+            android:layout_width="@dimen/activity_main_bottom_image_height"
+            android:layout_height="@dimen/activity_main_bottom_image_height"
+            android:layout_marginTop="5dp"
+            android:src="@mipmap/tab_me_unselected" />
+
+        <TextView
+            style="@style/base_small_text"
+            android:layout_marginTop="5dp"
+            android:text="资讯" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

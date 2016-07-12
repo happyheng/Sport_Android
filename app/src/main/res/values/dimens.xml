@@ -6,4 +6,8 @@
     <!--Edittext默认的宽度和高度-->
     <dimen name="edittext_default_width">300dp</dimen>
     <dimen name="edittext_default_height">50dp</dimen>
+
+    <!--主页底部bar默认的高度-->
+    <dimen name="activity_main_bottom_bar_height">50dp</dimen>
+    <dimen name="activity_main_bottom_image_height">24dp</dimen>
 </resources>
