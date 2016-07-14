@@ -13,7 +13,7 @@
             android:layout_width="@dimen/activity_main_bottom_image_height"
             android:layout_height="@dimen/activity_main_bottom_image_height"
             android:layout_marginTop="5dp"
-            android:src="@mipmap/ta2" />
+            android:background="@drawable/bg_tab_information" />
 
         <TextView
             style="@style/base_small_text"
@@ -30,7 +30,7 @@
             android:layout_width="@dimen/activity_main_bottom_image_height"
             android:layout_height="@dimen/activity_main_bottom_image_height"
             android:layout_marginTop="5dp"
-            android:src="@mipmap/tab_sport_unselected" />
+            android:background="@mipmap/tab_sport_unselected" />
 
         <TextView
             style="@style/base_small_text"
@@ -48,7 +48,7 @@
             android:layout_width="@dimen/activity_main_bottom_image_height"
             android:layout_height="@dimen/activity_main_bottom_image_height"
             android:layout_marginTop="5dp"
-            android:src="@mipmap/tab_me_unselected" />
+            android:background="@mipmap/tab_me_unselected" />
 
         <TextView
             style="@style/base_small_text"

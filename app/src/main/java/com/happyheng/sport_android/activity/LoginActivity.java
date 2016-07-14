@@ -92,6 +92,10 @@ public class LoginActivity extends BaseActivity {
             //3、调用相关接口
             BaseRequest request = new LoginRequest(userNameString, passWordString, mLoginListener);
             request.doRequest();
+
+
+            Intent intent = new Intent(LoginActivity.this, ActivityMain.class);
+            startActivity(intent);
         }
     }
 

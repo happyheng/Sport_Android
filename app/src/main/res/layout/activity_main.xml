@@ -8,15 +8,13 @@
         android:id="@+id/main_content_ll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_above="@+id/main_bottom_tab"/>
-
+        android:layout_above="@+id/main_bottom_tab"
+        android:orientation="vertical" />
 
 
     <com.happyheng.sport_android.view.MainBottomView
         android:id="@+id/main_bottom_tab"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/activity_main_bottom_bar_height"/>
-
-
+        android:layout_height="@dimen/activity_main_bottom_bar_height"
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>
