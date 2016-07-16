@@ -8,4 +8,6 @@
     <color name="red">#f00</color>
 
     <color name="blue_light">#0099ff</color>
+
+    <color name="sport_bg">#ff6eb958</color>
 </resources>
