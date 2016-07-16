@@ -10,4 +10,11 @@
     <!--主页底部bar默认的高度-->
     <dimen name="activity_main_bottom_bar_height">50dp</dimen>
     <dimen name="activity_main_bottom_image_height">24dp</dimen>
+
+
+    <dimen name="tab_sport_top_height">350dp</dimen>
+    <dimen name="tab_sport_oval_half_height">70dp</dimen>
+    <dimen name="tab_sport_oval_height">140dp</dimen>
+    
+    <dimen name="tab_sport_button_height">130dp</dimen>
 </resources>

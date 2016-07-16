@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <com.happyheng.sport_android.view.TabSportBackView
         android:layout_width="match_parent"
@@ -10,9 +10,125 @@
 
 
     <TextView
-        android:layout_centerInParent="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="sport"/>
+        android:id="@+id/tab_sport_mile_tv"
+        style="@style/base_tab_sport_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:text="0.00"
+        android:textSize="70sp" />
+
+    <TextView
+        android:id="@+id/tab_sport_mile_sign_tv"
+        style="@style/base_tab_sport_text"
+        android:layout_below="@+id/tab_sport_mile_tv"
+        android:layout_centerHorizontal="true"
+        android:text="跑步总里程(公里)" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_below="@+id/tab_sport_mile_sign_tv"
+        android:layout_marginTop="30dp">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+
+            <TextView
+                android:id="@+id/tab_sport_time_num_tv"
+                style="@style/base_tab_sport_text"
+                android:layout_alignBottom="@+id/tab_sport_time_tv"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@+id/tab_sport_time_tv"
+                android:text="0.0"
+                android:textSize="24sp" />
+
+
+            <TextView
+                android:id="@+id/tab_sport_time_tv"
+                style="@style/base_tab_sport_text"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="20dp"
+                android:text="小时" />
+
+            <TextView
+                style="@style/base_tab_sport_text"
+                android:layout_alignLeft="@+id/tab_sport_time_num_tv"
+                android:layout_below="@+id/tab_sport_time_tv"
+                android:layout_marginTop="5dp"
+                android:text="累计用时"
+                android:textSize="14sp" />
+
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@color/write" />
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tab_sport_num_tv"
+                style="@style/base_tab_sport_text"
+                android:layout_alignBottom="@+id/tab_sport_num_time_tv"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@+id/tab_sport_num_time_tv"
+                android:text="0.0"
+                android:textSize="24sp" />
+
+
+            <TextView
+                android:id="@+id/tab_sport_num_time_tv"
+                style="@style/base_tab_sport_text"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="20dp"
+                android:text="次" />
+
+            <TextView
+                style="@style/base_tab_sport_text"
+                android:layout_alignLeft="@+id/tab_sport_num_tv"
+                android:layout_below="@+id/tab_sport_num_tv"
+                android:layout_marginTop="5dp"
+                android:text="运动次数"
+                android:textSize="14sp" />
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="@dimen/tab_sport_oval_height"
+        android:layout_height="@dimen/tab_sport_oval_height"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/tab_sport_top_height">
+
+        <View
+            android:id="@+id/tab_sport_button_back"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_oval" />
+
+        <Button
+            android:layout_width="@dimen/tab_sport_button_height"
+            android:layout_height="@dimen/tab_sport_button_height"
+            android:layout_centerInParent="true"
+            android:background="@drawable/bg_tab_sport_button"
+            android:text="开始跑步"
+            android:textColor="@color/write" />
+
+    </RelativeLayout>
+
 
 </RelativeLayout>

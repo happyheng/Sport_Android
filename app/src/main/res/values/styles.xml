@@ -8,12 +8,18 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-
-    <style name="base_small_text">
+    <style name="base_text">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">12sp</item>
+    </style>
 
+
+    <style name="base_small_text" parent="base_text">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="base_tab_sport_text" parent="base_text">
+        <item name="android:textColor">@color/write</item>
     </style>
 
     <style name="activity_main_bottom">
