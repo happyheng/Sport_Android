@@ -35,7 +35,6 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-
             <TextView
                 android:id="@+id/tab_sport_time_num_tv"
                 style="@style/base_tab_sport_text"
@@ -121,11 +120,13 @@
             android:background="@drawable/bg_oval" />
 
         <Button
+            android:id="@+id/tab_sport_start_bt"
             android:layout_width="@dimen/tab_sport_button_height"
             android:layout_height="@dimen/tab_sport_button_height"
             android:layout_centerInParent="true"
             android:background="@drawable/bg_tab_sport_button"
             android:text="开始跑步"
+            android:textSize="20sp"
             android:textColor="@color/write" />
 
     </RelativeLayout>

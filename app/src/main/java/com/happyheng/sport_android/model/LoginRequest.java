@@ -44,19 +44,24 @@ public class LoginRequest extends BaseRequest{
             @Override
             public void onSuccess(String s) {
 
-                JSONObject resultJson = JSON.parseObject(s);
-                int code = resultJson.getInteger(RESULT_KEY);
-                if (code == REQUEST_SUCCESS) {
-                    String token = resultJson.getJSONObject("data").getString("token");
-                    listener.onSuccess(token);
-                } else {
-                    listener.onFail(code);
+                if (listener != null){
+                    JSONObject resultJson = JSON.parseObject(s);
+                    int code = resultJson.getInteger(RESULT_KEY);
+                    if (code == REQUEST_SUCCESS) {
+                        String token = resultJson.getJSONObject("data").getString("token");
+                        listener.onSuccess(token);
+                    } else {
+                        listener.onFail(code);
+                    }
                 }
+
             }
 
             @Override
             public void onFail() {
-                listener.onFail(REQUEST_OTHER_EXCEPTION);
+                if (listener!=null){
+                    listener.onFail(REQUEST_OTHER_EXCEPTION);
+                }
             }
         };
     }

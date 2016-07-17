@@ -19,7 +19,6 @@ public class ActivityMain extends BaseActivity {
 
     private static final String FRAGMENT_BASE_TAG = "base_fragment";
 
-    private ViewGroup mContentView;
     private MainBottomView mBottomView;
 
     private int mSelectPosition = 0;
@@ -37,7 +36,6 @@ public class ActivityMain extends BaseActivity {
     }
 
     private void initView() {
-        mContentView = (ViewGroup) findViewById(R.id.main_content_ll);
         mBottomView = (MainBottomView) findViewById(R.id.main_bottom_tab);
         mBottomView.setBottomCLickListener(mBottomChooseListener);
     }
