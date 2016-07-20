@@ -1,7 +1,8 @@
-package com.happyheng.sport_android.model;
+package com.happyheng.sport_android.model.request;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.happyheng.sport_android.model.User;
 import com.happyheng.sport_android.model.network.listener.OnRequestListener;
 
 /**

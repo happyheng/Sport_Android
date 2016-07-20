@@ -2,10 +2,9 @@ package com.happyheng.sport_android.activity;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.view.ViewGroup;
 
 import com.happyheng.sport_android.R;
-import com.happyheng.sport_android.fragment.FragmentInformation;
+import com.happyheng.sport_android.fragment.FragmentNews;
 import com.happyheng.sport_android.fragment.FragmentMine;
 import com.happyheng.sport_android.fragment.FragmentSport;
 import com.happyheng.sport_android.view.MainBottomView;
@@ -47,7 +46,7 @@ public class ActivityMain extends BaseActivity {
         switch (position){
 
             case 0:
-                fragment = new FragmentInformation();
+                fragment = new FragmentNews();
                 break;
 
             case 1:

@@ -11,8 +11,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.happyheng.sport_android.R;
-import com.happyheng.sport_android.model.BaseRequest;
-import com.happyheng.sport_android.model.LoginRequest;
+import com.happyheng.sport_android.model.request.BaseRequest;
+import com.happyheng.sport_android.model.request.LoginRequest;
 import com.happyheng.sport_android.model.User;
 import com.happyheng.sport_android.utils.DensityUtils;
 import com.happyheng.sport_android.utils.ScreenUtils;

@@ -3,8 +3,8 @@ package com.happyheng.sport_android.service.impl;
 import android.content.Context;
 
 import com.baidu.mapapi.model.LatLng;
-import com.happyheng.sport_android.model.RecordSportMessageRequest;
-import com.happyheng.sport_android.model.SportIdRequest;
+import com.happyheng.sport_android.model.request.RecordSportMessageRequest;
+import com.happyheng.sport_android.model.request.SportIdRequest;
 import com.happyheng.sport_android.service.RecordService;
 import com.orhanobut.logger.Logger;
 

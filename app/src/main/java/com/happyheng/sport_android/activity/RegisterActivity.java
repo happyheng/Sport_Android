@@ -7,8 +7,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.happyheng.sport_android.R;
-import com.happyheng.sport_android.model.BaseRequest;
-import com.happyheng.sport_android.model.RegisterRequest;
+import com.happyheng.sport_android.model.request.BaseRequest;
+import com.happyheng.sport_android.model.request.RegisterRequest;
 
 /**
  * "注册"的Activity
