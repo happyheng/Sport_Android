@@ -17,4 +17,5 @@
     <dimen name="tab_sport_oval_height">140dp</dimen>
     
     <dimen name="tab_sport_button_height">130dp</dimen>
+    <dimen name="recycler_default_decoration_height">12dp</dimen>
 </resources>

@@ -13,4 +13,6 @@
     <color name="sport_button_normal">#6fba58</color>
     <color name="sport_button_press">#28b046</color>
 
+    <color name="recycler_default_bg">#f8f8fa</color>
+
 </resources>
