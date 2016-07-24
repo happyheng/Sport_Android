@@ -1,7 +1,7 @@
 package com.happyheng.sport_android.activity;
 
-import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 
 import com.happyheng.sport_android.R;
 import com.happyheng.sport_android.fragment.FragmentNews;
@@ -57,12 +57,12 @@ public class ActivityMain extends BaseActivity {
                 fragment = new FragmentMine();
                 break;
         }
-        getFragmentManager().beginTransaction().add(R.id.main_content_ll,fragment,getFragmentTagByPosition(position)).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.main_content_ll,fragment,getFragmentTagByPosition(position)).commit();
     }
 
     //得到指定Tag的Fragment
     private Fragment getFragmentByTag(int position){
-        return  getFragmentManager().findFragmentByTag(getFragmentTagByPosition(position));
+        return  getSupportFragmentManager().findFragmentByTag(getFragmentTagByPosition(position));
     }
 
     //得到每个Fragment对应的tag
@@ -76,7 +76,7 @@ public class ActivityMain extends BaseActivity {
         if (selectFragment == null){
             initFragment(position);
         } else {
-            getFragmentManager().beginTransaction().show(selectFragment).commit();
+            getSupportFragmentManager().beginTransaction().show(selectFragment).commit();
         }
     }
 
@@ -88,7 +88,7 @@ public class ActivityMain extends BaseActivity {
             Logger.d("oldPosition为" + oldPosition + "-----position为" + selectPosition);
 
             Fragment nowFragment = getFragmentByTag(oldPosition);
-            getFragmentManager().beginTransaction().hide(nowFragment).commit();
+            getSupportFragmentManager().beginTransaction().hide(nowFragment).commit();
             selectPositionFragment(selectPosition);
 
             mSelectPosition = selectPosition;

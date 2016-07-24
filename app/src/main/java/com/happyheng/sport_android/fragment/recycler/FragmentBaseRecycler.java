@@ -171,7 +171,7 @@ public abstract class FragmentBaseRecycler
             //将mRefreshLayout消失　
             mRefreshLayout.setRefreshing(false);
 
-            if (requestResult != null && requestResult.ret == RequestResult.RET_SUCCESS)
+            if (requestResult != null && requestResult.ret == RequestResult.RET_SUCCESS && requestResult.addCount != 0)
             {
                 mShouldLoad = true;
             }

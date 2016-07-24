@@ -10,9 +10,12 @@ import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.model.LatLng;
+import com.happyheng.sport_android.model.event.LocationEvent;
 import com.happyheng.sport_android.servicecode.RecordService;
 import com.happyheng.sport_android.servicecode.impl.RecordServiceImpl;
 import com.orhanobut.logger.Logger;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -33,7 +36,6 @@ public class LocationService extends Service implements BDLocationListener {
 
     //记录运动信息的Service
     private RecordService mRecordService = null;
-
 
     @Override
     public void onCreate() {
@@ -80,6 +82,9 @@ public class LocationService extends Service implements BDLocationListener {
 
         //将运动信息上传至服务器
         recordLocation(locationValue,bdLocation.getLocationDescribe());
+
+        //定位成功，发送定位Event通知
+        EventBus.getDefault().post(new LocationEvent(locationValue));
     }
 
 

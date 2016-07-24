@@ -18,8 +18,7 @@ import com.happyheng.sport_android.R;
  * 也对Adapter和ItemDecoration做出了简化，子类不在需要自定义Adapter，而是实现此类定义好的方法即可
  */
 public abstract class FragmentLoadRecycler
-        extends FragmentBaseRecycler
-{
+        extends FragmentBaseRecycler {
 
     //默认请求的数量
     protected static final int DEFAULT_REQUEST_COUNT = 10;
@@ -38,12 +37,10 @@ public abstract class FragmentLoadRecycler
     private boolean mIsHadDefaultBack = true;
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState)
-    {
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        if (mIsInit)
-        {
+        if (mIsInit) {
             //1、设置分割线
             mDecoration = new RecyclerItemDecoration();
             mRecyclerView.addItemDecoration(mDecoration);
@@ -60,8 +57,7 @@ public abstract class FragmentLoadRecycler
             //得到默认距离顶部的间距
             mDefaultTopDecoration = getResources().getDimensionPixelSize(R.dimen.recycler_default_decoration_height);
             //设置背景颜色
-            if (mIsHadDefaultBack)
-            {
+            if (mIsHadDefaultBack) {
                 mRecyclerView.setBackgroundColor(getResources().getColor(R.color.recycler_default_bg));
             }
         }
@@ -69,11 +65,9 @@ public abstract class FragmentLoadRecycler
     }
 
     protected class RecyclerItemDecoration
-            extends RecyclerView.ItemDecoration
-    {
+            extends RecyclerView.ItemDecoration {
         @Override
-        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state)
-        {
+        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
             super.getItemOffsets(outRect, view, parent, state);
 
             int position = parent.getChildAdapterPosition(view);
@@ -82,15 +76,13 @@ public abstract class FragmentLoadRecycler
 
 
         @Override
-        public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state)
-        {
+        public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
             super.onDraw(c, parent, state);
         }
     }
 
     @Override
-    protected void onPostRequest(RequestResult data, boolean refresh)
-    {
+    protected void onPostRequest(RequestResult data, boolean refresh) {
         mIsShowEmptyView = true;
 
         notifyDataSetChanged();
@@ -99,95 +91,73 @@ public abstract class FragmentLoadRecycler
     /**
      * 更新RecyclerView的方法
      */
-    protected void notifyDataSetChanged()
-    {
-        if (mAdapter != null)
-        {
+    protected void notifyDataSetChanged() {
+        if (mAdapter != null) {
             mAdapter.notifyDataSetChanged();
         }
     }
 
-    protected RecyclerView.ViewHolder getBaseViewHolder(View itemView)
-    {
-        return new RecyclerView.ViewHolder(itemView)
-        {
+    protected RecyclerView.ViewHolder getBaseViewHolder(View itemView) {
+        return new RecyclerView.ViewHolder(itemView) {
         };
     }
 
     public class RecyclerAdapter
-            extends RecyclerView.Adapter
-    {
+            extends RecyclerView.Adapter {
 
         @Override
-        public int getItemCount()
-        {
+        public int getItemCount() {
             int num = getItemSize();
 
             //如果没有数据，那么应该显示EmptyView
-            if (num == 0 && mIsShowEmptyView)
-            {
+            if (num == 0 && mIsShowEmptyView) {
                 return 1;
             }
 
-            if (mShouldLoad)
-            {
+            if (mShouldLoad) {
                 return num + 1;
-            }
-            else
-            {
+            } else {
                 return num;
             }
         }
 
         @Override
-        public int getItemViewType(int position)
-        {
+        public int getItemViewType(int position) {
 
             int num = getItemSize();
-            if (num == 0)
-            {
+            if (num == 0) {
                 return TYPE_EMPTY;
             }
 
-            if (position == num)
-            {
+            if (position == num) {
                 return TYPE_FOOTER;
-            }
-            else
-            {
+            } else {
                 return TYPE_ITEM;
             }
         }
 
         @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
-        {
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
             RecyclerView.ViewHolder holder;
 
-            if (viewType == TYPE_EMPTY)
-            {
+            if (viewType == TYPE_EMPTY) {
 
                 View mEmptyView = getEmptyView(parent);
-                if (mEmptyView == null)
-                {
+                if (mEmptyView == null) {
                     mEmptyView = getDefaultEmptyView(parent);
                 }
 
                 holder = getBaseViewHolder(mEmptyView);
                 holder.itemView.setTag(TYPE_EMPTY);
-            }
-            else if (viewType == TYPE_ITEM)
-            {
+            } else if (viewType == TYPE_ITEM) {
                 //从子类中获取对应的Holder
                 holder = getViewHolder(parent);
                 RecyclerView.LayoutParams params = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT);
                 holder.itemView.setLayoutParams(params);
                 holder.itemView.setTag(TYPE_ITEM);
-            }
-            else
-            {
+            } else {
                 View footerView = LayoutInflater.from(getActivity()).inflate(R.layout.item_load_more, parent,
                         false);
                 footerView.setTag(TYPE_FOOTER);
@@ -197,10 +167,8 @@ public abstract class FragmentLoadRecycler
         }
 
         @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder holder, int position)
-        {
-            if (holder.itemView.getTag() != null && (int) holder.itemView.getTag() == TYPE_ITEM)
-            {
+        public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+            if (holder.itemView.getTag() != null && (int) holder.itemView.getTag() == TYPE_ITEM) {
                 //让子类去绑定数据源
                 bindingViewHolder(holder, position);
             }
@@ -214,27 +182,23 @@ public abstract class FragmentLoadRecycler
      * @param parent
      * @return
      */
-    protected View getDefaultEmptyView(ViewGroup parent)
-    {
+    protected View getDefaultEmptyView(ViewGroup parent) {
         return new View(getActivity());
     }
 
     @Override
-    protected int findLastVisibleItemPosition()
-    {
+    protected int findLastVisibleItemPosition() {
         return mLayoutManager.findLastVisibleItemPosition();
     }
 
-    protected RecyclerView.LayoutManager getLayoutManager()
-    {
+    protected RecyclerView.LayoutManager getLayoutManager() {
         return mLayoutManager;
     }
 
 
     //子类进行配置的方法
     //1、是否画默认的背景
-    protected void hadDefaultBackColor(boolean hadDefaultBack)
-    {
+    protected void hadDefaultBackColor(boolean hadDefaultBack) {
         this.mIsHadDefaultBack = hadDefaultBack;
     }
 
@@ -253,8 +217,7 @@ public abstract class FragmentLoadRecycler
     protected abstract void bindingViewHolder(RecyclerView.ViewHolder holder, int position);
 
     //得到空View，如果想换成其他的空View，子类可以复写这个方法
-    public View getEmptyView(ViewGroup parent)
-    {
+    public View getEmptyView(ViewGroup parent) {
         return null;
     }
 

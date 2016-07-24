@@ -16,10 +16,14 @@ import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.map.PolylineOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.happyheng.sport_android.R;
+import com.happyheng.sport_android.model.event.LocationEvent;
 import com.happyheng.sport_android.service.LocationService;
 import com.happyheng.sport_android.servicecode.RecordService;
 import com.happyheng.sport_android.servicecode.impl.RecordServiceImpl;
 import com.orhanobut.logger.Logger;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -29,11 +33,13 @@ import java.util.List;
  * 地图的Activity
  * Created by liuheng on 16/6/26.
  */
-public class MapActivity extends BaseActivity{
+public class MapActivity extends BaseActivity {
 
     //显示的百度MapView
     private MapView mMapView = null;
     private BaiduMap mMap = null;
+
+    private LatLng mBeforeLocation = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +51,8 @@ public class MapActivity extends BaseActivity{
         mMap = mMapView.getMap();
 
         startLocationService();
+
+        EventBus.getDefault().register(this);
     }
 
     //启动定位的Service
@@ -55,19 +63,18 @@ public class MapActivity extends BaseActivity{
 
 
     //获取经纬度后回调的方法
-    public void onReceiveLocation(BDLocation bdLocation) {
+    @Subscribe
+    public void onEvent(LocationEvent bdLocation) {
         //先暂时获得经纬度信息，并将其记录在List中
-        Logger.d("纬度信息为" + bdLocation.getLatitude()+"\n经度信息为" + bdLocation.getLongitude());
-
         //进行定位
-        location(bdLocation);
+        location(bdLocation.getLocation());
 
         //绘制位置
-        //drawLocation()
+        drawLocation(bdLocation.getLocation());
     }
 
     //根据定位信息进行定位，即移动地图至当前点
-    private void location(BDLocation bdLocation) {
+    private void location(LatLng bdLocation) {
 
         //可以用下面的方法对在得到经纬度信息后在百度地图中进行显示
         BaiduMap mMap = mMapView.getMap();
@@ -76,11 +83,10 @@ public class MapActivity extends BaseActivity{
         mMap.setMyLocationEnabled(true);
         // 构造定位数据
         MyLocationData locData = new MyLocationData.Builder()
-                .accuracy(bdLocation.getRadius())
                 // 此处设置开发者获取到的方向信息，顺时针0-360
                 .direction(100)
-                .latitude(bdLocation.getLatitude())
-                .longitude(bdLocation.getLongitude())
+                .latitude(bdLocation.latitude)
+                .longitude(bdLocation.longitude)
                 .build();
 
         //设置定位的配置信息
@@ -90,24 +96,23 @@ public class MapActivity extends BaseActivity{
         mMap.setMyLocationData(locData);
     }
 
-    //根据当前的左边画出点数和直线
-//    private void drawLocation() {
-//
-//        //1、画出当前的点数
-//        LatLng nowLatLng = mSportLatLngs.get(mSportLatLngs.size()-1);
-//        OverlayOptions dotOptions = new DotOptions().center(nowLatLng);
-//        mMap.addOverlay(dotOptions);
-//
-//        //2、如果不为1，那么还要画一个指向之前的横线
-//        if (mSportLatLngs.size() != 1){
-//            LatLng beforeLatLng = mSportLatLngs.get(mSportLatLngs.size()-2);
-//            List<LatLng> linePoints = new ArrayList<>();
-//            linePoints.add(beforeLatLng);
-//            linePoints.add(nowLatLng);
-//            OverlayOptions lineOptions = new PolylineOptions().points(linePoints);
-//            mMap.addOverlay(lineOptions);
-//        }
-//    }
+    //根据当前的坐标画出点数和直线
+    private void drawLocation(LatLng nowLatLng) {
+
+        //1、画出当前的点数
+        OverlayOptions dotOptions = new DotOptions().center(nowLatLng);
+        mMap.addOverlay(dotOptions);
+
+        //2、如果不为1，那么还要画一个指向之前的横线
+        if (mBeforeLocation != null){
+            List<LatLng> linePoints = new ArrayList<>();
+            linePoints.add(mBeforeLocation);
+            linePoints.add(nowLatLng);
+            OverlayOptions lineOptions = new PolylineOptions().points(linePoints);
+            mMap.addOverlay(lineOptions);
+        }
+        mBeforeLocation = nowLatLng;
+    }
 
     @Override
     protected void onResume() {

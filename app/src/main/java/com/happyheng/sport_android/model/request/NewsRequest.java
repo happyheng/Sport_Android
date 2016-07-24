@@ -1,10 +1,13 @@
 package com.happyheng.sport_android.model.request;
 
+import android.text.TextUtils;
+
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.happyheng.sport_android.model.News;
 import com.happyheng.sport_android.model.entity.NewsResult;
 import com.happyheng.sport_android.model.network.listener.OnRequestListener;
+import com.orhanobut.logger.Logger;
 
 import java.util.List;
 
@@ -27,6 +30,30 @@ public class NewsRequest extends BaseRequest {
     public void setIdCount(int id, int count) {
         this.mId = id;
         this.mCount = count;
+    }
+
+
+    /**
+     * 通过获取新闻数据源的方法
+     * @return
+     */
+    public List<News> getNewsItem() {
+
+        //进行同步请求
+        String resultJson = doSyncPost();
+        Logger.d("结果为"+resultJson);
+
+        if (!TextUtils.isEmpty(resultJson)){
+            NewsResult result = JSON.parseObject(resultJson, NewsResult.class);
+            if (result != null && result.getCode() == REQUEST_SUCCESS) {
+                return result.getData();
+            } else {
+                return null;
+            }
+        } else {
+            return null;
+        }
+
     }
 
     @Override
@@ -55,6 +82,7 @@ public class NewsRequest extends BaseRequest {
             }
         };
     }
+
 
     @Override
     protected String getRequestPath() {
