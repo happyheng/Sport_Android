@@ -45,6 +45,11 @@
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="8c9AjQNNSK9YoNQKvvPOagxW03AQnvgd" />
 
+
+        <service android:name=".service.LocationService"/>
+
+
+
         <activity
             android:name=".activity.LoginActivity"
             android:screenOrientation="portrait">
