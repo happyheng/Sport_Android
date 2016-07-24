@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Sport_Android</string>
+    <string name="app_name">星火运动</string>
 
     <string name="login_username_hint">请输入用户名</string>
     <string name="login_password_hint">请输入密码</string>
