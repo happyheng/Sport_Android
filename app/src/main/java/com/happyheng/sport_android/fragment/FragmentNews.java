@@ -1,13 +1,17 @@
 package com.happyheng.sport_android.fragment;
 
+import android.content.Intent;
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.ViewGroup;
 
+import com.happyheng.sport_android.activity.ArticleActivity;
 import com.happyheng.sport_android.fragment.recycler.FragmentLoadRecycler;
 import com.happyheng.sport_android.model.News;
 import com.happyheng.sport_android.model.request.NewsRequest;
 import com.happyheng.sport_android.view.NewsItemView;
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +23,15 @@ import java.util.List;
 public class FragmentNews extends FragmentLoadRecycler {
 
     private List<News> mNewsList = new ArrayList<>();
+
+    private void OnItemClick(int position) {
+        News news = mNewsList.get(position);
+        String articleUrl = news.getUrl();
+
+        Intent intent = new Intent(getActivity(), ArticleActivity.class);
+        intent.putExtra(ArticleActivity.BUNDLE_URL, articleUrl);
+        startActivity(intent);
+    }
 
     @Override
     protected RequestResult requestDataInBackground(boolean isRefresh) {
@@ -63,13 +76,19 @@ public class FragmentNews extends FragmentLoadRecycler {
     }
 
     @Override
-    protected void bindingViewHolder(RecyclerView.ViewHolder holder, int position) {
+    protected void bindingViewHolder(RecyclerView.ViewHolder holder, final int position) {
         NewsItemView itemView = (NewsItemView) holder.itemView;
         News news = mNewsList.get(position);
 
         itemView.setThumbnailSource(news.getThumbnail());
         itemView.setTitleString(news.getName());
         itemView.setContentString(news.getSimplecontent());
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OnItemClick(position);
+            }
+        });
     }
 
 }
