@@ -20,8 +20,8 @@ public class HttpClientRequestHelper {
         FormBody.Builder builder = new FormBody.Builder();
         for (PostRequestBody body : bodys) {
             //请求的value要经过编码
-            String encoderRequestString = URLEncoder.encode(body.value, "UTF8");
-            builder.add(body.name, encoderRequestString);
+            //String encoderRequestString = URLEncoder.encode(body.value, "UTF8");
+            builder.add(body.name, body.value);
         }
 
         RequestBody requestBody = builder.build();
