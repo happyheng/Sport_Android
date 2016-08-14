@@ -16,7 +16,7 @@
             android:id="@+id/icon_iv"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@mipmap/icon" />
+            android:src="@mipmap/user_icon" />
 
         <EditText
             android:id="@+id/username_et"
@@ -52,7 +52,7 @@
             android:layout_width="300dp"
             android:layout_height="35dp"
             android:background="@color/red"
-            android:text="login"
+            android:text="登陆"
             android:textColor="@color/write" />
 
         <Button
@@ -61,7 +61,7 @@
             android:layout_height="35dp"
             android:layout_marginTop="25dp"
             android:background="@color/blue_light"
-            android:text="register"
+            android:text="注册"
             android:textColor="@color/write" />
 
     </LinearLayout>

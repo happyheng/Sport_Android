@@ -4,8 +4,8 @@
     <string name="login_username_hint">请输入用户名</string>
     <string name="login_password_hint">请输入密码</string>
 
-    <string name="login_bt_text">login</string>
-    <string name="register_bt_text">register</string>
+    <string name="login_bt_text">登陆</string>
+    <string name="register_bt_text">注册</string>
 
     <string name="user_pass_empty">用户名或密码不能为空哦</string>
     <string name="wrong_username">用户名错误</string>

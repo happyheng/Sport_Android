@@ -16,6 +16,7 @@ import com.orhanobut.logger.Logger;
 public class ArticleActivity extends BaseActivity {
 
     public static final String BUNDLE_URL = "url";
+    //private static final String TEST_URL = "http://192.168.0.104:8080/Sport/NewsDetail?id=3";
 
     private WebView mWebView;
 
@@ -40,7 +41,7 @@ public class ArticleActivity extends BaseActivity {
     private void initWebView() {
         WebSettings settings = mWebView.getSettings();
 
-        //settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         settings.setUseWideViewPort(true);
         settings.setLoadWithOverviewMode(true);
         mWebView.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
