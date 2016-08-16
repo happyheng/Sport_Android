@@ -9,6 +9,8 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.DotOptions;
+import com.baidu.mapapi.map.MapStatus;
+import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MyLocationConfiguration;
 import com.baidu.mapapi.map.MyLocationData;
@@ -75,6 +77,9 @@ public class MapActivity extends BaseActivity {
 
     //根据定位信息进行定位，即移动地图至当前点
     private void location(LatLng bdLocation) {
+
+        //将map缩放至18级
+        mMap.setMapStatus(MapStatusUpdateFactory.newMapStatus(new MapStatus.Builder().zoom(18).build()));
 
         //可以用下面的方法对在得到经纬度信息后在百度地图中进行显示
         BaiduMap mMap = mMapView.getMap();

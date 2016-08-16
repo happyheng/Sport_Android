@@ -2,7 +2,6 @@ package com.happyheng.sport_android.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -68,6 +67,10 @@ public class ActivitySportList extends BaseActivity implements SportListRequest.
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         int sportId = mListData.get(position);
         Logger.d("得到的sportId为"+sportId);
+
+        Intent intent = new Intent(this,ActivitySportMessage.class);
+        intent.putExtra(ActivitySportMessage.TAG_SPORT_ID,sportId);
+        startActivity(intent);
     }
 
     private class SportListAdapter extends BaseAdapter{
