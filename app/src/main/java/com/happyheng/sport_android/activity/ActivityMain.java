@@ -85,7 +85,6 @@ public class ActivityMain extends BaseActivity {
 
         @Override
         public void onClick(int oldPosition, int selectPosition) {
-            Logger.d("oldPosition为" + oldPosition + "-----position为" + selectPosition);
 
             Fragment nowFragment = getFragmentByTag(oldPosition);
             getSupportFragmentManager().beginTransaction().hide(nowFragment).commit();

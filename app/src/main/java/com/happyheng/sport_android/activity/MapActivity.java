@@ -63,7 +63,6 @@ public class MapActivity extends BaseActivity {
         startService(intent);
     }
 
-
     //获取经纬度后回调的方法
     @Subscribe
     public void onEvent(LocationEvent bdLocation) {
@@ -139,6 +138,10 @@ public class MapActivity extends BaseActivity {
         super.onDestroy();
         //在activity执行onDestroy时执行mMapView.onDestroy()，实现地图生命周期管理
         mMapView.onDestroy();
+
+        //将定位Service关闭掉
+        Intent intent = new Intent(this, LocationService.class);
+        stopService(intent);
     }
 
 

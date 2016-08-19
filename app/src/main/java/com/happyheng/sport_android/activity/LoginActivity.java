@@ -99,11 +99,9 @@ public class LoginActivity extends BaseActivity {
 
         @Override
         public void onSuccess(String token) {
-            Logger.d("token为" + token);
 
             User.getUser().setUserToken(token);
 
-            Logger.d("得到储存的token为" + User.getUser().getUserToken());
             Intent intent = new Intent(LoginActivity.this, ActivityMain.class);
             startActivity(intent);
         }

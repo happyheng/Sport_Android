@@ -99,4 +99,12 @@ public class LocationService extends Service implements BDLocationListener {
     public IBinder onBind(Intent intent) {
         return null;
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mLocationClient.stop();
+        mLocationClient.unRegisterLocationListener(this);
+        Logger.d("onDestroy");
+    }
 }
