@@ -34,7 +34,6 @@ public class ArticleActivity extends BaseActivity {
 
         mArticleUrl = getIntent().getStringExtra(BUNDLE_URL);
 
-        Logger.d("请求的url为"+mArticleUrl);
         mWebView.loadUrl(mArticleUrl);
     }
 

@@ -53,7 +53,6 @@ public class ActivitySportList extends BaseActivity implements SportListRequest.
 
     @Override
     public void onSuccess(List<Integer> list) {
-        Logger.d("获取成功");
         mListData.addAll(list);
         mAdapter.notifyDataSetChanged();
     }

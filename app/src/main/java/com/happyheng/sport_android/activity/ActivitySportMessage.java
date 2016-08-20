@@ -88,10 +88,10 @@ public class ActivitySportMessage extends BaseActivity implements SportMessageRe
             mMap.addOverlays(optionsList);
 
             //画折线
-            OverlayOptions lineOptions = new PolylineOptions().points(latLngList);
-            mMap.addOverlay(lineOptions);
-
-            //点话的非常的工整，可能是因为百度在绘制List的时候故意为之，所以可以一条一条的绘制，一个点一个点的绘制
+            if(latLngList.size() != 1){
+                OverlayOptions lineOptions = new PolylineOptions().points(latLngList);
+                mMap.addOverlay(lineOptions);
+            }
         }
     }
 

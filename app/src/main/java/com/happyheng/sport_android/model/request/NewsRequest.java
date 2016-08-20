@@ -41,7 +41,6 @@ public class NewsRequest extends BaseRequest {
 
         //进行同步请求
         String resultJson = doSyncPost();
-        Logger.d("结果为"+resultJson);
 
         if (!TextUtils.isEmpty(resultJson)){
             NewsResult result = JSON.parseObject(resultJson, NewsResult.class);

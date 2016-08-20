@@ -31,7 +31,6 @@ public class NewsItemView extends LinearLayout {
     }
 
     public void setThumbnailSource(String url) {
-        Logger.d("请求的url为"+url);
         Glide.with(getContext()).load(url).into(mThumbnailIv);
     }
 
